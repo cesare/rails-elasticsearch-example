@@ -162,7 +162,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
-  tzinfo-data
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
 
