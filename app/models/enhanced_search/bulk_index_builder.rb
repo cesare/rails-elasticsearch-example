@@ -30,17 +30,25 @@ class EnhancedSearch::BulkIndexBuilder
     Time.current.strftime("%Y%m%d_%H%M%S")
   end
 
-  def index_generator_class
+  def create_index_generator
+    EnhancedSearch::IndexGenerator.new
+  end
+
+  def index_settings
     fail NotImplementedError
   end
 
-  def create_index_generator
-    index_generator_class.new(index_real_name: index_real_name)
+  def index_mappings
+    fail NotImplementedError
   end
 
   def generate_index
     index_generator = create_index_generator
-    index_generator.run
+    index_generator.run(
+      index_name: index_real_name,
+      settings: index_settings,
+      mappings: index_mappings
+    )
   end
 
   def targets

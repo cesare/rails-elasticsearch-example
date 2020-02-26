@@ -5,8 +5,12 @@ class EnhancedSearch::Servant::BulkIndexBuilder < EnhancedSearch::BulkIndexBuild
     "servants"
   end
 
-  def index_generator_class
-    EnhancedSearch::Servant::IndexGenerator
+  def index_settings
+    EnhancedSearch::Servant::SettingsFactory.new.create
+  end
+
+  def index_mappings
+    EnhancedSearch::Servant::MappingsFactory.new.create
   end
 
   def targets
