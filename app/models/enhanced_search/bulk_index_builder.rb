@@ -43,13 +43,19 @@ class EnhancedSearch::BulkIndexBuilder
     index_generator.run
   end
 
-  def bulk_inserter_class
+  def targets
     fail NotImplementedError
   end
 
+  def create_bulk_entity_indexer
+    EnhancedSearch::BulkEntityIndexer.new(index_name: index_real_name)
+  end
+
   def bulk_insert
-    inserter = bulk_inserter_class.new(index_name: @index_real_name)
-    inserter.run
+    indexer = create_bulk_entity_indexer
+    targets.each_batch do |entities|
+      indexer.index(entities: entities)
+    end
   end
 
   def create_alias_changer

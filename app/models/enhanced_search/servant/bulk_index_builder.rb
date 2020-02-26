@@ -9,7 +9,7 @@ class EnhancedSearch::Servant::BulkIndexBuilder < EnhancedSearch::BulkIndexBuild
     EnhancedSearch::Servant::IndexGenerator
   end
 
-  def bulk_inserter_class
-    EnhancedSearch::Servant::BulkInserter
+  def targets
+    EnhancedSearch::Servant::BulkIndexTargets.new
   end
 end
