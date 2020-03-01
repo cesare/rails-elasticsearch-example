@@ -1,6 +1,5 @@
 class EnhancedSearch::BulkIndexBuilder
-  def initialize(event_publishing_channel: default_event_publishing_channel)
-    @event_publishing_channel = event_publishing_channel
+  def initialize
     @index_real_name = create_index_real_name
   end
 
@@ -12,10 +11,7 @@ class EnhancedSearch::BulkIndexBuilder
 
   private
 
-  attr_reader :event_publishing_channel, :index_real_name
-
-  def default_event_publishing_channel
-  end
+  attr_reader :index_real_name
 
   def index_base_name
     fail NotImplementedError
